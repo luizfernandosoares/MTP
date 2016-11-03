@@ -1,0 +1,9 @@
+R	224
+G	46
+B	49
+
+Trocar para
+
+R	128
+G	0
+B	255
