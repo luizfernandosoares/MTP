@@ -1,0 +1,18 @@
+﻿Build started 17/11/2016 11:30:58.
+     1>Project "C:\Users\1E30\Documents\MTP\aula20161117\ProjGUI2\ProjGUI2\ProjGUI2.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Touching "Debug\ProjGUI2.unsuccessfulbuild".
+       GenerateTargetFrameworkMonikerAttribute:
+       Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
+       ClCompile:
+         All outputs are up-to-date.
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr:pure /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\ProjGUI2.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt ProjGUI2.cpp /clr:nostdlib 
+         ProjGUI2.cpp
+     1>c:\users\1e30\documents\mtp\aula20161117\projgui2\projgui2\Form1.h(373): error C2664: 'void System::Windows::Forms::Control::Text::set(System::String ^)' : cannot convert parameter 1 from 'char' to 'System::String ^'
+                 No user-defined-conversion operator available, or
+                 No standard conversion exists from the boxed form of the arithmetic type to the target type
+     1>Done Building Project "C:\Users\1E30\Documents\MTP\aula20161117\ProjGUI2\ProjGUI2\ProjGUI2.vcxproj" (build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.27
