@@ -1,6 +1,10 @@
-﻿#pragma once
+﻿#include<cmath>
+
+#pragma once
 
 namespace ProjGUI2 {
+
+	#define MAXCHARDISP 16
 
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -34,11 +38,13 @@ namespace ProjGUI2 {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::TextBox^  Display;
+
 	private: System::Windows::Forms::Button^  sete;
 	private: System::Windows::Forms::Button^  oito;
 	private: System::Windows::Forms::Button^  nove;
-	private: System::Windows::Forms::Button^  apagar;
+	private: System::Windows::Forms::Button^  potencia;
+
+
 	private: System::Windows::Forms::Button^  apagartudo;
 
 
@@ -73,6 +79,11 @@ namespace ProjGUI2 {
 
 
 	private: System::Windows::Forms::Button^  igual;
+	private: System::Windows::Forms::Button^  fatorial;
+	private: System::Windows::Forms::Button^  trocarsinal;
+	private: System::Windows::Forms::Label^  lblDisplay;
+
+
 
 	protected: 
 
@@ -89,11 +100,11 @@ namespace ProjGUI2 {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->Display = (gcnew System::Windows::Forms::TextBox());
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(Form1::typeid));
 			this->sete = (gcnew System::Windows::Forms::Button());
 			this->oito = (gcnew System::Windows::Forms::Button());
 			this->nove = (gcnew System::Windows::Forms::Button());
-			this->apagar = (gcnew System::Windows::Forms::Button());
+			this->potencia = (gcnew System::Windows::Forms::Button());
 			this->apagartudo = (gcnew System::Windows::Forms::Button());
 			this->quatro = (gcnew System::Windows::Forms::Button());
 			this->cinco = (gcnew System::Windows::Forms::Button());
@@ -109,16 +120,10 @@ namespace ProjGUI2 {
 			this->ponto = (gcnew System::Windows::Forms::Button());
 			this->raiz = (gcnew System::Windows::Forms::Button());
 			this->igual = (gcnew System::Windows::Forms::Button());
+			this->fatorial = (gcnew System::Windows::Forms::Button());
+			this->trocarsinal = (gcnew System::Windows::Forms::Button());
+			this->lblDisplay = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
-			// 
-			// Display
-			// 
-			this->Display->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 21.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
-				static_cast<System::Byte>(0)));
-			this->Display->Location = System::Drawing::Point(12, 23);
-			this->Display->Name = L"Display";
-			this->Display->Size = System::Drawing::Size(282, 41);
-			this->Display->TabIndex = 0;
 			// 
 			// sete
 			// 
@@ -130,6 +135,7 @@ namespace ProjGUI2 {
 			this->sete->TabIndex = 1;
 			this->sete->Text = L"7";
 			this->sete->UseVisualStyleBackColor = true;
+			this->sete->Click += gcnew System::EventHandler(this, &Form1::sete_Click);
 			// 
 			// oito
 			// 
@@ -141,6 +147,7 @@ namespace ProjGUI2 {
 			this->oito->TabIndex = 2;
 			this->oito->Text = L"8";
 			this->oito->UseVisualStyleBackColor = true;
+			this->oito->Click += gcnew System::EventHandler(this, &Form1::oito_Click);
 			// 
 			// nove
 			// 
@@ -152,17 +159,19 @@ namespace ProjGUI2 {
 			this->nove->TabIndex = 3;
 			this->nove->Text = L"9";
 			this->nove->UseVisualStyleBackColor = true;
+			this->nove->Click += gcnew System::EventHandler(this, &Form1::nove_Click);
 			// 
-			// apagar
+			// potencia
 			// 
-			this->apagar->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
-				static_cast<System::Byte>(0)));
-			this->apagar->Location = System::Drawing::Point(179, 91);
-			this->apagar->Name = L"apagar";
-			this->apagar->Size = System::Drawing::Size(47, 43);
-			this->apagar->TabIndex = 4;
-			this->apagar->Text = L"C";
-			this->apagar->UseVisualStyleBackColor = true;
+			this->potencia->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)), 
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->potencia->Location = System::Drawing::Point(232, 191);
+			this->potencia->Name = L"potencia";
+			this->potencia->Size = System::Drawing::Size(47, 43);
+			this->potencia->TabIndex = 4;
+			this->potencia->Text = L"xʸ";
+			this->potencia->UseVisualStyleBackColor = true;
+			this->potencia->Click += gcnew System::EventHandler(this, &Form1::potencia_Click);
 			// 
 			// apagartudo
 			// 
@@ -186,6 +195,7 @@ namespace ProjGUI2 {
 			this->quatro->TabIndex = 6;
 			this->quatro->Text = L"4";
 			this->quatro->UseVisualStyleBackColor = true;
+			this->quatro->Click += gcnew System::EventHandler(this, &Form1::quatro_Click);
 			// 
 			// cinco
 			// 
@@ -197,6 +207,7 @@ namespace ProjGUI2 {
 			this->cinco->TabIndex = 7;
 			this->cinco->Text = L"5";
 			this->cinco->UseVisualStyleBackColor = true;
+			this->cinco->Click += gcnew System::EventHandler(this, &Form1::cinco_Click);
 			// 
 			// seis
 			// 
@@ -208,28 +219,31 @@ namespace ProjGUI2 {
 			this->seis->TabIndex = 8;
 			this->seis->Text = L"6";
 			this->seis->UseVisualStyleBackColor = true;
+			this->seis->Click += gcnew System::EventHandler(this, &Form1::seis_Click);
 			// 
 			// mais
 			// 
 			this->mais->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
-			this->mais->Location = System::Drawing::Point(179, 140);
+			this->mais->Location = System::Drawing::Point(179, 91);
 			this->mais->Name = L"mais";
 			this->mais->Size = System::Drawing::Size(47, 43);
 			this->mais->TabIndex = 9;
 			this->mais->Text = L"+";
 			this->mais->UseVisualStyleBackColor = true;
+			this->mais->Click += gcnew System::EventHandler(this, &Form1::mais_Click);
 			// 
 			// menos
 			// 
 			this->menos->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
-			this->menos->Location = System::Drawing::Point(232, 142);
+			this->menos->Location = System::Drawing::Point(179, 142);
 			this->menos->Name = L"menos";
 			this->menos->Size = System::Drawing::Size(47, 43);
 			this->menos->TabIndex = 10;
 			this->menos->Text = L"-";
 			this->menos->UseVisualStyleBackColor = true;
+			this->menos->Click += gcnew System::EventHandler(this, &Form1::menos_Click);
 			// 
 			// um
 			// 
@@ -265,34 +279,37 @@ namespace ProjGUI2 {
 			this->tres->TabIndex = 13;
 			this->tres->Text = L"3";
 			this->tres->UseVisualStyleBackColor = true;
+			this->tres->Click += gcnew System::EventHandler(this, &Form1::tres_Click);
 			// 
 			// multiplicacao
 			// 
-			this->multiplicacao->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
+			this->multiplicacao->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
 			this->multiplicacao->Location = System::Drawing::Point(179, 191);
 			this->multiplicacao->Name = L"multiplicacao";
 			this->multiplicacao->Size = System::Drawing::Size(47, 43);
 			this->multiplicacao->TabIndex = 14;
-			this->multiplicacao->Text = L"x";
+			this->multiplicacao->Text = L"×";
 			this->multiplicacao->UseVisualStyleBackColor = true;
+			this->multiplicacao->Click += gcnew System::EventHandler(this, &Form1::multiplicacao_Click);
 			// 
 			// divisao
 			// 
 			this->divisao->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
-			this->divisao->Location = System::Drawing::Point(232, 191);
+			this->divisao->Location = System::Drawing::Point(179, 240);
 			this->divisao->Name = L"divisao";
 			this->divisao->Size = System::Drawing::Size(47, 43);
 			this->divisao->TabIndex = 15;
 			this->divisao->Text = L"÷";
 			this->divisao->UseVisualStyleBackColor = true;
+			this->divisao->Click += gcnew System::EventHandler(this, &Form1::divisao_Click);
 			// 
 			// zero
 			// 
 			this->zero->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
-			this->zero->Location = System::Drawing::Point(19, 240);
+			this->zero->Location = System::Drawing::Point(73, 240);
 			this->zero->Name = L"zero";
 			this->zero->Size = System::Drawing::Size(47, 43);
 			this->zero->TabIndex = 16;
@@ -302,42 +319,90 @@ namespace ProjGUI2 {
 			// 
 			// ponto
 			// 
-			this->ponto->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
+			this->ponto->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
-			this->ponto->Location = System::Drawing::Point(72, 240);
+			this->ponto->Location = System::Drawing::Point(19, 240);
 			this->ponto->Name = L"ponto";
 			this->ponto->Size = System::Drawing::Size(47, 43);
 			this->ponto->TabIndex = 17;
-			this->ponto->Text = L".";
+			this->ponto->Text = L",";
 			this->ponto->UseVisualStyleBackColor = true;
+			this->ponto->Click += gcnew System::EventHandler(this, &Form1::ponto_Click);
 			// 
 			// raiz
 			// 
 			this->raiz->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
-			this->raiz->Location = System::Drawing::Point(126, 240);
+			this->raiz->Location = System::Drawing::Point(232, 240);
 			this->raiz->Name = L"raiz";
 			this->raiz->Size = System::Drawing::Size(47, 43);
 			this->raiz->TabIndex = 18;
-			this->raiz->Text = L"√";
+			this->raiz->Text = L"√¯";
 			this->raiz->UseVisualStyleBackColor = true;
+			this->raiz->Click += gcnew System::EventHandler(this, &Form1::raiz_Click);
 			// 
 			// igual
 			// 
 			this->igual->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
-			this->igual->Location = System::Drawing::Point(179, 241);
+			this->igual->Location = System::Drawing::Point(90, 289);
 			this->igual->Name = L"igual";
-			this->igual->Size = System::Drawing::Size(100, 42);
+			this->igual->Size = System::Drawing::Size(122, 42);
 			this->igual->TabIndex = 19;
 			this->igual->Text = L"=";
 			this->igual->UseVisualStyleBackColor = true;
+			this->igual->Click += gcnew System::EventHandler(this, &Form1::igual_Click);
+			// 
+			// fatorial
+			// 
+			this->fatorial->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)), 
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->fatorial->Location = System::Drawing::Point(232, 142);
+			this->fatorial->Name = L"fatorial";
+			this->fatorial->Size = System::Drawing::Size(47, 43);
+			this->fatorial->TabIndex = 20;
+			this->fatorial->Text = L"n!";
+			this->fatorial->UseVisualStyleBackColor = true;
+			// 
+			// trocarsinal
+			// 
+			this->trocarsinal->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
+				static_cast<System::Byte>(0)));
+			this->trocarsinal->Location = System::Drawing::Point(126, 240);
+			this->trocarsinal->Name = L"trocarsinal";
+			this->trocarsinal->Size = System::Drawing::Size(47, 43);
+			this->trocarsinal->TabIndex = 21;
+			this->trocarsinal->Text = L"+/-";
+			this->trocarsinal->UseVisualStyleBackColor = true;
+			this->trocarsinal->Click += gcnew System::EventHandler(this, &Form1::trocarsinal_Click);
+			// 
+			// lblDisplay
+			// 
+			this->lblDisplay->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom) 
+				| System::Windows::Forms::AnchorStyles::Left) 
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->lblDisplay->BackColor = System::Drawing::SystemColors::Window;
+			this->lblDisplay->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
+			this->lblDisplay->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
+				static_cast<System::Byte>(0)));
+			this->lblDisplay->Location = System::Drawing::Point(20, 24);
+			this->lblDisplay->Name = L"lblDisplay";
+			this->lblDisplay->Size = System::Drawing::Size(257, 49);
+			this->lblDisplay->TabIndex = 22;
+			this->lblDisplay->Text = L"0";
+			this->lblDisplay->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+			this->lblDisplay->Click += gcnew System::EventHandler(this, &Form1::lblDisplay_Click);
 			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(303, 300);
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"$this.BackgroundImage")));
+			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->ClientSize = System::Drawing::Size(301, 353);
+			this->Controls->Add(this->lblDisplay);
+			this->Controls->Add(this->trocarsinal);
+			this->Controls->Add(this->fatorial);
 			this->Controls->Add(this->igual);
 			this->Controls->Add(this->raiz);
 			this->Controls->Add(this->ponto);
@@ -353,26 +418,166 @@ namespace ProjGUI2 {
 			this->Controls->Add(this->cinco);
 			this->Controls->Add(this->quatro);
 			this->Controls->Add(this->apagartudo);
-			this->Controls->Add(this->apagar);
+			this->Controls->Add(this->potencia);
 			this->Controls->Add(this->nove);
 			this->Controls->Add(this->oito);
 			this->Controls->Add(this->sete);
-			this->Controls->Add(this->Display);
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^  >(resources->GetObject(L"$this.Icon")));
 			this->Name = L"Form1";
 			this->Text = L"Calculadora";
+			this->Load += gcnew System::EventHandler(this, &Form1::Form1_Load);
 			this->ResumeLayout(false);
-			this->PerformLayout();
 
 		}
+		bool separado;
+		double numero;
+		char operacao;
+		void LimpaDisplay () {
+			separado = false;
+			lblDisplay->Text = "0";
+		}
+		void LimpaTudo () {
+			LimpaDisplay ();
+			numero = 0.0;
+			operacao = '\0';
+		}
+
 #pragma endregion
 	private: System::Void button12_Click(System::Object^  sender, System::EventArgs^  e) {
+			 if ( lblDisplay->Text->Length < MAXCHARDISP ) {
+				 if ( lblDisplay->Text == "0" )
+					lblDisplay->Text = "2";
+				 else
+					 lblDisplay->Text = lblDisplay->Text + "2";
 			 }
+		}
 private: System::Void button11_Click(System::Object^  sender, System::EventArgs^  e) {
+			if ( lblDisplay->Text->Length < MAXCHARDISP ) {	
+				if ( lblDisplay->Text == "0" )
+					lblDisplay->Text = "1";
+				else
+					lblDisplay->Text = lblDisplay->Text + "1";
+			}
 		 }
 private: System::Void zero_Click(System::Object^  sender, System::EventArgs^  e) {
-			 Display->Text = 't';
+			if ( lblDisplay->Text->Length < MAXCHARDISP )	
+				if ( lblDisplay->Text != "0" )
+					lblDisplay->Text = lblDisplay->Text + "0";
 		 }
 private: System::Void button5_Click(System::Object^  sender, System::EventArgs^  e) {
+			 LimpaTudo();
+		 }
+private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e) {
+			 separado = false;
+		 }
+private: System::Void lblDisplay_Click(System::Object^  sender, System::EventArgs^  e) {
+		 }
+private: System::Void ponto_Click(System::Object^  sender, System::EventArgs^  e) {
+			 if ( lblDisplay->Text->Length < MAXCHARDISP && !separado ) {
+				 lblDisplay->Text = lblDisplay->Text + ",";
+				 separado = true;
+			 }
+		 }
+private: System::Void trocarsinal_Click(System::Object^  sender, System::EventArgs^  e) {
+		 }
+private: System::Void tres_Click(System::Object^  sender, System::EventArgs^  e) {
+			if ( lblDisplay->Text->Length < MAXCHARDISP ) {	
+				if ( lblDisplay->Text == "0" )
+					lblDisplay->Text = "3";
+				else
+					lblDisplay->Text = lblDisplay->Text + "3";
+			}
+		 }
+private: System::Void quatro_Click(System::Object^  sender, System::EventArgs^  e) {
+			if ( lblDisplay->Text->Length < MAXCHARDISP ) {
+				if ( lblDisplay->Text == "0" )
+					lblDisplay->Text = "4";
+				else
+					lblDisplay->Text = lblDisplay->Text + "4";
+			}
+		 }
+private: System::Void cinco_Click(System::Object^  sender, System::EventArgs^  e) {
+			 if ( lblDisplay->Text->Length < MAXCHARDISP ) {
+				if ( lblDisplay->Text == "0" )
+					lblDisplay->Text = "5";
+				else
+					lblDisplay->Text = lblDisplay->Text + "5";
+			 }
+		 }
+private: System::Void seis_Click(System::Object^  sender, System::EventArgs^  e) {
+			 if ( lblDisplay->Text->Length < MAXCHARDISP ) {
+				if ( lblDisplay->Text == "0" )
+					lblDisplay->Text = "6";
+				else
+					lblDisplay->Text = lblDisplay->Text + "6";
+			 }
+		 }
+private: System::Void sete_Click(System::Object^  sender, System::EventArgs^  e) {
+			 if ( lblDisplay->Text->Length < MAXCHARDISP ) {
+				if ( lblDisplay->Text == "0" )
+					lblDisplay->Text = "7";
+				else
+					lblDisplay->Text = lblDisplay->Text + "7";
+			 }
+		 }
+private: System::Void oito_Click(System::Object^  sender, System::EventArgs^  e) {
+			 if ( lblDisplay->Text->Length < MAXCHARDISP ) {
+				if ( lblDisplay->Text == "0" )
+					lblDisplay->Text = "8";
+				else
+					lblDisplay->Text = lblDisplay->Text + "8";
+			 }
+		 }
+private: System::Void nove_Click(System::Object^  sender, System::EventArgs^  e) {
+			 if ( lblDisplay->Text->Length < MAXCHARDISP ){
+				if ( lblDisplay->Text == "0" )
+					lblDisplay->Text = "9";
+				else
+					lblDisplay->Text = lblDisplay->Text + "9";
+			 }
+		 }
+private: System::Void mais_Click(System::Object^  sender, System::EventArgs^  e) {
+			 numero = System::Convert::ToDouble(lblDisplay->Text);
+			 operacao = '+';
+			 LimpaDisplay ();
+		 }
+private: System::Void menos_Click(System::Object^  sender, System::EventArgs^  e) {
+			 numero = System::Convert::ToDouble(lblDisplay->Text);
+			 operacao = '-';
+			 LimpaDisplay ();
+		 }
+private: System::Void multiplicacao_Click(System::Object^  sender, System::EventArgs^  e) {
+			 numero = System::Convert::ToDouble(lblDisplay->Text);
+			 operacao = '*';
+			 LimpaDisplay ();
+		 }
+private: System::Void divisao_Click(System::Object^  sender, System::EventArgs^  e) {
+			 numero = System::Convert::ToDouble(lblDisplay->Text);
+			 operacao = '/';
+			 LimpaDisplay ();
+		 }
+private: System::Void igual_Click(System::Object^  sender, System::EventArgs^  e) {
+			 double numero2 = System::Convert::ToDouble(lblDisplay->Text);
+			 switch (operacao){
+				 case '+':
+					 lblDisplay->Text = System::Convert::ToString(numero + numero2);
+					 break;
+				 case '-':
+					 lblDisplay->Text = System::Convert::ToString(numero - numero2);
+					 break;
+				 case '*':
+					 lblDisplay->Text = System::Convert::ToString(numero * numero2);
+					 break;
+				 case '/':
+					 lblDisplay->Text = System::Convert::ToString(numero / numero2);
+					 break;
+			 }
+		 }
+private: System::Void raiz_Click(System::Object^  sender, System::EventArgs^  e) {
+			 double numero2 = sqrt( System::Convert::ToDouble(lblDisplay->Text) );
+			 lblDisplay->Text = System::Convert::ToString(numero2);
+		 }
+private: System::Void potencia_Click(System::Object^  sender, System::EventArgs^  e) {
 		 }
 };
 }
