@@ -1,0 +1,25 @@
+﻿Build started 27/11/2016 17:32:23.
+     1>Project "C:\Users\Luiz\Desktop\MTP-master\aula20161117\ProjGUI2\ProjGUI2\ProjGUI2.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\ProjGUI2.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       GenerateTargetFrameworkMonikerAttribute:
+       Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
+       ClCompile:
+         All outputs are up-to-date.
+         All outputs are up-to-date.
+         All outputs are up-to-date.
+       CoreResGen:
+         No resources are out of date with respect to their source files. Skipping resource generation.
+       ResourceCompile:
+         All outputs are up-to-date.
+       Link:
+         All outputs are up-to-date.
+         ProjGUI2.vcxproj -> C:\Users\Luiz\Desktop\MTP-master\aula20161117\ProjGUI2\Debug\ProjGUI2.exe
+       FinalizeBuildStatus:
+         Deleting file "Debug\ProjGUI2.unsuccessfulbuild".
+         Touching "Debug\ProjGUI2.lastbuildstate".
+     1>Done Building Project "C:\Users\Luiz\Desktop\MTP-master\aula20161117\ProjGUI2\ProjGUI2\ProjGUI2.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.11
